@@ -3,7 +3,8 @@ const logo = document.getElementById('logo')
 const navLeft = document.getElementById('nav_left')
 const coins = document.getElementById('coins')
 const navRight = document.getElementById('nav_right')
-
+const menuRight = document.getElementById('nav_menu_right')
+const menuIconRight = document.getElementById('nav_menu_title_right')
 
 const classListLogo = {
     'img': 'header_logo_img',
@@ -13,6 +14,11 @@ const classListLogo = {
 const classListNavLink = {
     'img': 'nav_link_img',
     'title': 'nav_link_title'
+}
+
+const classListNavMenuLink = {
+    'img': 'nav_menu_img',
+    'title': 'nav_menu_title'
 }
 
 const classListCoins = {
@@ -44,24 +50,34 @@ const createElement = (jsonObj, elem, classList, isTitle) => {
     return elem
 }
 
-const createListElemLi = (jsonMas, conteiner, className, isTitle) => {
+const createListElemLi = (jsonMas, conteiner, className, isTitle, classList) => {
     jsonMas.forEach(elem => {
         let item = document.createElement('li')
         item.className = className
         item.id = elem.id
-        conteiner.append(createElement(elem, item, classListNavLink, isTitle))
+        conteiner.append(createElement(elem, item, classList, isTitle))
     });
 }
 
-createElement(json.logo, logo, classListLogo, true)
-createListElemLi(json.iconsLeft, navLeft, 'nav_link', true)
-createElement(json.coins, coins, classListCoins, true)
-createListElemLi(json.iconsRight, navRight, 'nav_menu_link', false)
+const loadData = () => {
+    createElement(json.logo, logo, classListLogo, true)
+    createListElemLi(json.iconsLeft, navLeft, 'nav_link', true, classListNavLink)
+    createElement(json.coins, coins, classListCoins, true)
+    createListElemLi(json.iconsRight, navRight, 'nav_link nav_link--right', false, classListNavLink)
+}
 
+const createMenu = () => {
+    let item = document.createElement('li')
+    item.className = 'nav_menu_link'
+    menuRight.append(createElement(json.coins, item, classListNavMenuLink, true))
 
+    createListElemLi(json.iconsRight, menuRight, 'nav_menu_link', true, classListNavMenuLink)
 
+    createElement(json.menuIcons[0], menuIconRight, classListNavLink, false)
+}
 
-
+loadData() // Инициализация приложения
+createMenu() // Создание меню
 
 
 

@@ -87,6 +87,14 @@ const data = {
             "img": "assets/img/out.svg",
             "size": "24px"
         }
+    ],
+    'menuIcons': [
+        {   
+            "id": "men",
+            "title" : "Profile",
+            "img": "assets/img/men.svg",
+            "size": "24px"
+        }
     ]
 }
 
