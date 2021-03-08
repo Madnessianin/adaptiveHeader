@@ -5,6 +5,7 @@ const coins = document.getElementById('coins')
 const navRight = document.getElementById('nav_right')
 const menuRight = document.getElementById('nav_menu_right')
 const menuIconRight = document.getElementById('nav_menu_title_right')
+const menuIconLeft = document.getElementById('nav_menu_title_left')
 
 const classListLogo = {
     'img': 'header_logo_img',
@@ -59,6 +60,12 @@ const createListElemLi = (jsonMas, conteiner, className, isTitle, classList) => 
     });
 }
 
+const createIconMenu = (elem, conteiner, isTitle) => {
+    let item = document.createElement('li')
+    item.className = 'nav_menu_link'
+    conteiner.append(createElement(elem, item, classListNavMenuLink, isTitle))
+}
+
 const loadData = () => {
     createElement(json.logo, logo, classListLogo, true)
     createListElemLi(json.iconsLeft, navLeft, 'nav_link', true, classListNavLink)
@@ -67,13 +74,11 @@ const loadData = () => {
 }
 
 const createMenu = () => {
-    let item = document.createElement('li')
-    item.className = 'nav_menu_link'
-    menuRight.append(createElement(json.coins, item, classListNavMenuLink, true))
-
+    createIconMenu(json.coins, menuRight, true)
     createListElemLi(json.iconsRight, menuRight, 'nav_menu_link', true, classListNavMenuLink)
-
-    createElement(json.menuIcons[0], menuIconRight, classListNavLink, false)
+    
+    createIconMenu(json.menuIcons[0], menuIconLeft, true)
+    createIconMenu(json.menuIcons[1], menuIconRight, false)
 }
 
 loadData() // Инициализация приложения

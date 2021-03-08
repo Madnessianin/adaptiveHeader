@@ -89,8 +89,14 @@ const data = {
         }
     ],
     'menuIcons': [
+        {
+            "id": "more",
+            "title" : "more",
+            "img": "assets/img/more.svg",
+            "size": "24px"
+        },
         {   
-            "id": "men",
+            "id": "profile",
             "title" : "Profile",
             "img": "assets/img/men.svg",
             "size": "24px"
