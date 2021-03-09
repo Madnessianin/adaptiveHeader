@@ -58,20 +58,20 @@ const createElement = (jsonObj, elem, classList, isTitle) => {
     return elem
 }
 
+const createElementLi = (elem, conteiner, isTitle, classList, className) => {
+    let item = document.createElement('li')
+    item.className = className
+    item.id = elem.id
+    conteiner.append(createElement(elem, item, classList, isTitle))
+}
+
 const createListElemLi = (jsonMas, conteiner, className, isTitle, classList) => {
     jsonMas.forEach(elem => {
-        let item = document.createElement('li')
-        item.className = className
-        item.id = elem.id
-        conteiner.append(createElement(elem, item, classList, isTitle))
+        createElementLi(elem, conteiner, isTitle, classList, className)
     });
 }
 
-const createIconMenu = (elem, conteiner, isTitle, classList, className) => {
-    let item = document.createElement('li')
-    item.className = className
-    conteiner.append(createElement(elem, item, classList, isTitle))
-}
+
 
 const loadData = () => {
     createElement(json.logo, logo, classListLogo, true)
@@ -81,7 +81,7 @@ const loadData = () => {
 }
 
 const createMenu = () => {
-    createIconMenu(json.coins, menuRight, true, classListNavMenuLink, 'nav_menu_link')
+    createElementLi(json.coins, menuRight, true, classListNavMenuLink, 'nav_menu_link')
     createListElemLi(json.iconsRight, menuRight, 'nav_menu_link', true, classListNavMenuLink)
     
     createElement(json.menuIcons[0],  menuIconMore, classListMenuIcon, true)
