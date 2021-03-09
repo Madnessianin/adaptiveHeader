@@ -4,6 +4,7 @@ const navLeft = document.getElementById('nav_left')
 const coins = document.getElementById('coins')
 const navRight = document.getElementById('nav_right')
 const menuRight = document.getElementById('nav_menu_right')
+const menuLeft = document.getElementById('nav_menu_left')
 const menuIconProfile = document.getElementById('profile_menu')
 const menuIconMore = document.getElementById('more_menu')
 const menuIconMobile = document.getElementById('mobile_menu')
@@ -47,8 +48,7 @@ const createSpan = (className, text) => {
     let title = document.createElement('span')
     title.innerHTML = text
     title.className = className
-    return title
-}
+    return title}
 
 const createElement = (jsonObj, elem, classList, isTitle) => {
     elem.append(createImg(classList.img, jsonObj.img, jsonObj.size))
@@ -71,7 +71,27 @@ const createListElemLi = (jsonMas, conteiner, className, isTitle, classList) => 
     });
 }
 
+const editIdElement = (jsonMas, suffix) => {
+    let jsonNewMass = jsonMas.map(item => {
+        return {
+            ...item, 
+            id: item.id + suffix
+        }
+    })
 
+    return jsonNewMass
+}
+
+const createAction = (elem, selector) => {
+    elem.onclick = () => {
+        let right = document.querySelector(selector)
+        if (right.classList.contains('menu_active')) {
+            right.classList.remove('menu_active')
+        } else {
+            right.classList.add('menu_active')
+        }
+    }
+}
 
 const loadData = () => {
     createElement(json.logo, logo, classListLogo, true)
@@ -83,14 +103,21 @@ const loadData = () => {
 const createMenu = () => {
     createElementLi(json.coins, menuRight, true, classListNavMenuLink, 'nav_menu_link')
     createListElemLi(json.iconsRight, menuRight, 'nav_menu_link', true, classListNavMenuLink)
-    
+    createListElemLi(editIdElement(json.iconsLeft, '_menu'), menuLeft, 'nav_menu_link', true, classListNavMenuLink)
+
     createElement(json.menuIcons[0],  menuIconMore, classListMenuIcon, true)
     createElement(json.menuIcons[1],  menuIconMobile, classListMenuIcon, false)
     createElement(json.menuIcons[2],  menuIconProfile, classListMenuIcon, false)
+
+    createAction(menuIconMore, '.nav_menu_item--left')
+    createAction(menuIconMobile, '.nav_menu_item--left')
+    createAction(menuIconProfile, '.nav_menu_item--right') 
 }
 
+
 loadData() // Инициализация приложения
-createMenu() // Создание меню
+createMenu()
+// Создание меню
 
 
 
