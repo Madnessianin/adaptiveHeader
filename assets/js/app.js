@@ -4,8 +4,10 @@ const navLeft = document.getElementById('nav_left')
 const coins = document.getElementById('coins')
 const navRight = document.getElementById('nav_right')
 const menuRight = document.getElementById('nav_menu_right')
-const menuIconRight = document.getElementById('nav_menu_title_right')
-const menuIconLeft = document.getElementById('nav_menu_title_left')
+const menuIconProfile = document.getElementById('profile_menu')
+const menuIconMore = document.getElementById('more_menu')
+const menuIconMobile = document.getElementById('mobile_menu')
+
 
 const classListLogo = {
     'img': 'header_logo_img',
@@ -14,6 +16,11 @@ const classListLogo = {
 
 const classListNavLink = {
     'img': 'nav_link_img',
+    'title': 'nav_link_title'
+}
+
+const classListMenuIcon = {
+    'img': 'nav_menu_icon_img',
     'title': 'nav_link_title'
 }
 
@@ -60,10 +67,10 @@ const createListElemLi = (jsonMas, conteiner, className, isTitle, classList) => 
     });
 }
 
-const createIconMenu = (elem, conteiner, isTitle) => {
+const createIconMenu = (elem, conteiner, isTitle, classList, className) => {
     let item = document.createElement('li')
-    item.className = 'nav_menu_link'
-    conteiner.append(createElement(elem, item, classListNavMenuLink, isTitle))
+    item.className = className
+    conteiner.append(createElement(elem, item, classList, isTitle))
 }
 
 const loadData = () => {
@@ -74,11 +81,12 @@ const loadData = () => {
 }
 
 const createMenu = () => {
-    createIconMenu(json.coins, menuRight, true)
+    createIconMenu(json.coins, menuRight, true, classListNavMenuLink, 'nav_menu_link')
     createListElemLi(json.iconsRight, menuRight, 'nav_menu_link', true, classListNavMenuLink)
     
-    createIconMenu(json.menuIcons[0], menuIconLeft, true)
-    createIconMenu(json.menuIcons[1], menuIconRight, false)
+    createElement(json.menuIcons[0],  menuIconMore, classListMenuIcon, true)
+    createElement(json.menuIcons[1],  menuIconMobile, classListMenuIcon, false)
+    createElement(json.menuIcons[2],  menuIconProfile, classListMenuIcon, false)
 }
 
 loadData() // Инициализация приложения

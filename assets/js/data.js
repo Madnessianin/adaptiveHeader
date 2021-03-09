@@ -95,6 +95,12 @@ const data = {
             "img": "assets/img/more.svg",
             "size": "24px"
         },
+        {
+            "id": "mobile",
+            "title" : "mobile",
+            "img": "assets/img/mobile.svg",
+            "size": "24px"
+        },
         {   
             "id": "profile",
             "title" : "Profile",
