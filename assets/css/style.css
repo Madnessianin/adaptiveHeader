@@ -44,6 +44,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    max-height: 56px;
 }
 
 .nav_item {
@@ -140,9 +141,9 @@ body {
 
 .nav_menu_item--right {
     right: 1%;
+    z-index: 3;
 }
 .nav_menu_item--left {
-    z-index: 3;
     right: 7%;
 }
 
@@ -216,7 +217,8 @@ body {
 
 #more_menu,
 #menu_icon,
-#mobile_menu {
+#mobile_menu,
+#active_elem_menu {
     display: none;
 }
 
@@ -309,7 +311,8 @@ body {
     #staff_menu {
         display: flex;
     }
-    #mobile_menu {
+    #mobile_menu,
+    #active_elem_menu {
         display: block;
     }
 }
