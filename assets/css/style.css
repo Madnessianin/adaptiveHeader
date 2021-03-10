@@ -14,11 +14,11 @@ body {
     position: relative;
     z-index: 1;
     padding-left: 20px;
+    padding-right: 16px;
 }
 .header_inner {
     display: flex;
     height: 100%;
-    width: 98%;
 }
 
 .header_logo {
@@ -115,9 +115,9 @@ body {
     position: absolute;
     top: 125%;
     z-index: 2;
-    padding: 0 20px;
     min-width: 134px;
     margin: 0;
+    padding: 0;
     opacity: 0;
     background-color: #4267B2;
     border-radius: 4px 4px 0 0;
@@ -141,12 +141,31 @@ body {
 
 .nav_menu_item--right {
     right: 1%;
-    z-index: 3;
 }
 .nav_menu_item--left {
     right: 7%;
 }
+.menu_link_active {
+    background-color: #35528E;
+}
 
+.menu_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 16px;
+}
+
+.menu_title_img {
+    margin-right: 8px;
+}
+
+.menu_title_text {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
 
 .nav_menu_link {
     display: none;
@@ -154,7 +173,8 @@ body {
     position: relative;
     top: -15px;
     z-index: 2;
-    padding: 15px 0;
+    padding: 15px 20px;
+    transition: background-color .2s linear;
 }
 .nav_menu_item--right .nav_menu_link{
     display: flex;
@@ -176,6 +196,7 @@ body {
     font-weight: 400;
     line-height: 16px;
     color: #fff;
+    text-transform: capitalize;
 }
 
 /* nav_menu_icon */
@@ -211,7 +232,8 @@ body {
 .nav_menu_title,
 .nav_link_title,
 .nav_menu_title,
-.nav_menu_icon_title  {
+.nav_menu_icon_title,
+.menu_title_text  {
     text-shadow: 0 4px 4px rgba(0,0,0, .25);
 }
 

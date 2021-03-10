@@ -88,7 +88,7 @@ const data = {
             "size": "24px"
         }
     ],
-    'menuIcons': [
+    "menuIcons": [
         {
             "id": "more",
             "title" : "more",
