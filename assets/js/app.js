@@ -46,8 +46,9 @@ const classMenuTitle = {
     'title': 'menu_title_text'
 }
 
-/* Базовые функции */
+let currentElement = null
 
+/* Базовые функции */
 /* Создание изображения */
 const createImg = (className, src, classSize) => { 
     let img = document.createElement('img')
@@ -137,7 +138,11 @@ const changeTitle = (conteiner, elem) => {
 /* Создание события клика для изменения состояния */
 const createActionEditState = (item, activeClass, elem) => {
     item.onclick = () => {
+        if (currentElement !== null) {
+            currentElement.classList.remove(activeClass)
+        }
         addClass(item, activeClass)
+        currentElement = item
         changeTitle(activeElem, elem)
     }
     return item
