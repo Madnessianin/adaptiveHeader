@@ -69,9 +69,9 @@ var createSpan = function (className, text) {
 
 /* Создание элемента без дополнительной обертки */
 var createElement = function (jsonObj, elem, classList, isTitle) {
-    elem.append(createImg(classList.img, jsonObj.img, jsonObj.size))
+    elem.appendChild(createImg(classList.img, jsonObj.img, jsonObj.size))
     if (isTitle) {
-        elem.append(createSpan(classList.title, jsonObj.title))
+        elem.appendChild(createSpan(classList.title, jsonObj.title))
     }
     return elem
 }
@@ -82,9 +82,9 @@ var createElementLi = function (elem, conteiner, isTitle, classList, className, 
     item.className = className
     item.id = elem.id
     if (isAction) {
-        conteiner.append(createElement(elem, createActionEditState(item, 'menu_link_active', elem), classList, isTitle))
+        conteiner.appendChild(createElement(elem, createActionEditState(item, 'menu_link_active', elem), classList, isTitle))
     } else {
-        conteiner.append(createElement(elem, item, classList, isTitle))
+        conteiner.appendChild(createElement(elem, item, classList, isTitle))
     }   
 }
 
@@ -98,7 +98,10 @@ var createListElemLi = function (jsonMas, conteiner, isTitle, classList, classNa
 /* Изменение базовых id */
 var editIdElement = function (jsonMas, suffix) {
     var jsonNewMass = jsonMas.map(function (item) {
-        var mas = Object.assign({}, item)
+        var mas = {}
+        for(var key in item) {
+            mas[key] = item[key]
+        }
         mas.id = item.id + suffix
         return mas
     })
