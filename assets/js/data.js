@@ -1,5 +1,5 @@
 
-const data = {
+var data = {
     "logo" : {
         "id": "logo",
         "title" : "Libra",
@@ -110,6 +110,6 @@ const data = {
     ]
 }
 
-const getJsonData = () => {
+var getJsonData = function () {
     return JSON.stringify(data)
 }
