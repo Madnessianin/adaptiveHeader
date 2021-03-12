@@ -255,6 +255,9 @@ body {
   #menu_icon {
     display: flex;
   }
+  .nav_menu_item--right {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 1300px) {
@@ -262,7 +265,7 @@ body {
   #checks_menu {
     display: flex;
   }
-  .nav_menu_item {
+  .nav_menu_item--left {
     display: block;
   }
   #checks,
