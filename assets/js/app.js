@@ -1,4 +1,3 @@
-var json = JSON.parse(getJsonData());
 var logo = document.getElementById("logo");
 var navLeft = document.getElementById("nav_left");
 var coins = document.getElementById("coins");
@@ -9,7 +8,9 @@ var menuIconProfile = document.getElementById("profile_menu");
 var menuIconMore = document.getElementById("more_menu");
 var menuIconMobile = document.getElementById("mobile_menu");
 var activeElem = document.getElementById("active_elem_menu");
-var activeMenu = undefined
+var activeMenu = null
+
+
 
 var classListLogo = {
   img: "header_logo_img",
@@ -153,7 +154,7 @@ var createActionAddClass = function (elem, selector, activeClass) {
   elem.onclick = function () { 
     var element = document.querySelector(selector);
     addClass(element, activeClass);
-    if (activeMenu !== undefined && activeMenu !== element) {
+    if (activeMenu !== null && activeMenu !== element) {
       activeMenu.classList.remove(activeClass)
     }
     activeMenu = element
@@ -191,7 +192,7 @@ var createActionEditState = function (item, activeClass, elem) {
 
 /* Основные функции */
 /* Функция загрузки данных */
-var loadData = function () {
+var loadData = function (json) {
   createElement(json.logo, logo, classListLogo, true); // Создание лого
   createListElemLi(
     json.iconsLeft,
@@ -213,7 +214,7 @@ var loadData = function () {
 };
 
 /* Функция создания меню */
-var createMenu = function () {
+var createMenu = function (json) {
   /* Создание элементов меню */
   createElementLi(
     json.coins,
@@ -249,6 +250,21 @@ var createMenu = function () {
   createActionAddClass(menuIconMobile, ".nav_menu_item--left", "menu_active");
   createActionAddClass(menuIconProfile, ".nav_menu_item--right", "menu_active");
 };
+var getData = function() {
+  var request = new XMLHttpRequest();
+  request.responseType =	"json";
+  request.open("GET", "http://localhost:5000/data.json", true);
+  request.setRequestHeader("Content-type", "application/json");
+  request.withCredentials = true;
+  request.addEventListener("readystatechange", function () {
+    var response = request.response
+    if (response !== null) {
+      loadData(response); // Инициализация приложения
+      createMenu(response); // Создание меню
+    }
+    
+  })
+  request.send();
+}
 
-loadData(); // Инициализация приложения
-createMenu(); // Создание меню
+getData() // Загрузка данных
