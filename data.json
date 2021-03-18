@@ -96,13 +96,11 @@
     },
     {
       "id": "mobile",
-      "title": "mobile",
       "img": "assets/img/mobile.svg",
       "size": "24px"
     },
     {
       "id": "profile",
-      "title": "Profile",
       "img": "assets/img/men.svg",
       "size": "24px"
     }
