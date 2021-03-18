@@ -9,6 +9,7 @@ var menuIconProfile = document.getElementById("profile_menu");
 var menuIconMore = document.getElementById("more_menu");
 var menuIconMobile = document.getElementById("mobile_menu");
 var activeElem = document.getElementById("active_elem_menu");
+var activeMenu = undefined
 
 var classListLogo = {
   img: "header_logo_img",
@@ -149,9 +150,13 @@ var addClass = function (elem, activeClass) {
 
 /* Создание события клика для добавления активного класса */
 var createActionAddClass = function (elem, selector, activeClass) {
-  elem.onclick = function () {
+  elem.onclick = function () { 
     var element = document.querySelector(selector);
     addClass(element, activeClass);
+    if (activeMenu !== undefined && activeMenu !== element) {
+      activeMenu.classList.remove(activeClass)
+    }
+    activeMenu = element
   };
   return elem;
 };
